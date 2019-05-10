@@ -10,17 +10,19 @@ namespace L9
     {
         static void Main(string[] args)
         {
-            var Coords = new Coordinates(2,2,2);
-            (var x, var y, var z) = Coords;
+            //var Coords = new Coordinates(2,2,2);
+            //(var x, var y, var z) = Coords;
 
-            var Answer = Math.Sqrt(Math.Abs(Math.Pow(x, 2) + Math.Pow(y, 2) + Math.Pow(z, 2)));
+            //var Answer = Math.Sqrt(Math.Abs(Math.Pow(x, 2) + Math.Pow(y, 2) + Math.Pow(z, 2)));
 
-            Console.WriteLine(Answer);
+            //Console.WriteLine(Answer);
 
-            Today today = new Today();
-            (_, _, _, var hour, var minute, var second) = today;
+            //Today today = new Today();
+            //(_, _, _, var hour, var minute, var second) = today;
 
-            Console.WriteLine(hour + " " + minute + " " + second);
+            //Console.WriteLine(hour + " " + minute + " " + second);
+
+            //P1();
 
             Console.ReadLine();
         }
@@ -45,6 +47,35 @@ namespace L9
                 Z = z;
             }
         }
+        public static void P1()
+        {
+            Random rand = new Random();
+            IFigure[,] figureArr = new IFigure[3,10];
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine();
+                for (int j = 0; j < 10; j++)
+                {
+                    switch (rand.Next(2))
+                    {
+                        case 0:
+                            figureArr[i, j] = new Square(rand.Next(10), rand.Next(10));
+                            break;
+
+                        case 1:
+                            figureArr[i, j] = new Triangle(rand.Next(10), rand.Next(10), rand.Next(10));
+                            break;
+
+                        case 2:
+                            figureArr[i, j] = new Circle(rand.Next(10));
+                            break;
+                    }
+
+                    Console.Write(figureArr[i, j].calculateArea() + " ");
+                }
+            }
+        }
     }
 
     public class Today
@@ -65,6 +96,57 @@ namespace L9
             hours = Hour;
             minutes = Minute;
             seconds = Second;
+        }
+    }
+
+    public interface IFigure
+    {
+        double calculateArea();
+    }
+
+    public class Square : IFigure
+    {
+        public int x, y, area = 0;
+        public double calculateArea()
+        {
+            return area = x * y;
+        }
+
+        public Square(int X, int Y)
+        {
+            this.x = X;
+            this.y = Y;
+        }
+    }
+
+    public class Triangle : IFigure
+    {
+        public int a, b, c, area = 0;
+        public double calculateArea()
+        {
+            return area = a * b * c;
+        }
+
+        public Triangle(int A, int B, int C)
+        {
+            this.a = A;
+            this.b = B;
+            this.c = C;
+        }
+    }
+
+    public class Circle : IFigure
+    {
+        double r;
+        public double area = 0;
+        public double calculateArea()
+        {
+            return area = 3.14 * r;
+        }
+
+        public Circle(double R)
+        {
+            this.r = R;
         }
     }
 }
