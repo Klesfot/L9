@@ -24,6 +24,19 @@ namespace L9
 
             //P1();
 
+            var input = new List<string>();
+            input.Add("abcde");
+
+            //var input = new List<int>();
+            //input.Add(6);
+
+            //var input = new List<double>();
+            //input.Add(3.14356);
+
+            //var input = new List<DateTime>();
+            //input.Add(DateTime.Now);
+            P3_.GuessType(input);
+
             Console.ReadLine();
         }
 
