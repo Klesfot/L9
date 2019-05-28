@@ -5,19 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
 using System.Threading;
+using static L9.Program;
 
-namespace L9
+namespace L6
 {
-    class P6
+    static class P6
     {
-        public static void Task1()
+        public static List<string> FormatStringFun(this List<string> data, FormatString formatFun)
         {
-            while (true)
+            List<string> editedList = new List<string>();
+
+            foreach (var item in data)
             {
-                Thread.Sleep(1000);
-                Console.Clear();
-                Console.WriteLine(DateTime.Now.Hour + " " + DateTime.Now.Minute + " " + DateTime.Now.Second);
+                editedList.Add(formatFun(item));
             }
+
+            return editedList;
         }
     }
 }
